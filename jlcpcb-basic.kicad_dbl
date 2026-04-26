@@ -1,0 +1,303 @@
+{
+  "meta": {
+    "version": 0
+  },
+  "name": "JLCPCB - Basic",
+  "description": "Database of the JLCPCB basic components",
+  "source": {
+    "type": "odbc",
+    "dsn": "JLCPCBDB"
+  },
+  "libraries": [
+    {
+      "name": "Capacitors",
+      "table": "Capacitors",
+      "key": "mfr",
+      "symbols": "Symbols",
+      "footprints": "package",
+      "fields": [
+        {
+          "column": "mfr",
+          "name": "MPN",
+          "visible_on_add": false,
+          "visible_in_chooser": false,
+          "show_name": false,
+          "inherit_properties": true
+        },
+        {
+          "column": "Capacitance",
+          "name": "Value",
+          "visible_on_add": true,
+          "visible_in_chooser": true,
+          "show_name": false
+        },
+        {
+          "column": "Voltage Rated",
+          "name": "Voltage Rating",
+          "visible_on_add": true,
+          "visible_in_chooser": true,
+          "show_name": false
+        },
+        {
+          "column": "lcsc",
+          "name": "JLCID",
+          "visible_on_add": false,
+          "visible_in_chooser": false,
+          "show_name": false
+        },
+        {
+          "column": "Temperature Coefficient",
+          "name": "Temp-coef",
+          "visible_on_add": false,
+          "visible_in_chooser": true,
+          "show_name": false
+        },
+        {
+          "column": "Tolerance",
+          "name": "Tolerance",
+          "visible_on_add": false,
+          "visible_in_chooser": false,
+          "show_name": false
+        }
+      ],
+      "properties": {
+        "description": "Capacitors (JLCPCB database)",
+        "keywords": "Capacitors",
+        "exclude_from_bom": 0,
+        "exclude_from_board": 0
+      }
+    },
+    {
+      "name": "Resistors",
+      "table": "Resistors",
+      "key": "mfr",
+      "symbols": "Symbols",
+      "footprints": "package",
+      "fields": [
+        {
+          "column": "mfr",
+          "name": "MPN",
+          "visible_on_add": false,
+          "visible_in_chooser": false,
+          "show_name": false,
+          "inherit_properties": true
+        },
+        {
+          "column": "Resistance",
+          "name": "Value",
+          "visible_on_add": true,
+          "visible_in_chooser": true,
+          "show_name": false
+        },
+        {
+          "column": "Overload Voltage (Max)",
+          "name": "Voltage Rating",
+          "visible_on_add": true,
+          "visible_in_chooser": true,
+          "show_name": false
+        },
+        {
+          "column": "lcsc",
+          "name": "JLCID",
+          "visible_on_add": false,
+          "visible_in_chooser": false,
+          "show_name": false
+        },
+        {
+          "column": "Tolerance",
+          "name": "Tolerance",
+          "visible_on_add": false,
+          "visible_in_chooser": true,
+          "show_name": false
+        },
+        {
+          "column": "Temperature Coefficient",
+          "name": "Temp-co",
+          "visible_on_add": false,
+          "visible_in_chooser": true,
+          "show_name": false
+        },
+        {
+          "column": "Power(Watts)",
+          "name": "Power",
+          "visible_on_add": false,
+          "visible_in_chooser": false,
+          "show_name": false
+        }
+      ],
+      "properties": {
+        "description": "Resistors (JLCPCB database)",
+        "keywords": "Resistors",
+        "exclude_from_bom": 0,
+        "exclude_from_board": 0
+      }
+    },
+    {
+      "name": "Inductors",
+      "table": "Inductors",
+      "key": "mfr",
+      "symbols": "Symbols",
+      "footprints": "package",
+      "fields": [
+        {
+          "column": "mfr",
+          "name": "MPN",
+          "visible_on_add": false,
+          "visible_in_chooser": false,
+          "show_name": false,
+          "inherit_properties": true
+        },
+        {
+          "column": "Inductance",
+          "name": "Value",
+          "visible_on_add": true,
+          "visible_in_chooser": true,
+          "show_name": false
+        },
+        {
+          "column": "Rated Current",
+          "name": "Rated Current",
+          "visible_on_add": true,
+          "visible_in_chooser": true,
+          "show_name": false
+        },
+        {
+          "column": "lcsc",
+          "name": "JLCID",
+          "visible_on_add": false,
+          "visible_in_chooser": false,
+          "show_name": false
+        },
+        {
+          "column": "DC Resistance (DCR)",
+          "name": "Resistance",
+          "visible_on_add": false,
+          "visible_in_chooser": true,
+          "show_name": false
+        }
+      ],
+      "properties": {
+        "description": "Inductors (JLCPCB database)",
+        "keywords": "Inductors",
+        "exclude_from_bom": 0,
+        "exclude_from_board": 0
+      }
+    },
+    {
+      "name": "Diode",
+      "table": "Diodes",
+      "key": "mfr",
+      "symbols": "Symbols",
+      "footprints": "package",
+      "fields": [
+        {
+          "column": "mfr",
+          "name": "MPN",
+          "visible_on_add": false,
+          "visible_in_chooser": false,
+          "show_name": false,
+          "inherit_properties": true
+        },
+        {
+          "column": "Reverse Voltage (Vr)",
+          "name": "Value",
+          "visible_on_add": true,
+          "visible_in_chooser": true,
+          "show_name": false
+        },
+        {
+          "column": "Rectified Current",
+          "name": "Rectified Current",
+          "visible_on_add": true,
+          "visible_in_chooser": true,
+          "show_name": false
+        },
+        {
+          "column": "lcsc",
+          "name": "JLCID",
+          "visible_on_add": false,
+          "visible_in_chooser": false,
+          "show_name": false
+        },
+        {
+          "column": "Forward Voltage (Vf@If)",
+          "name": "Forward Voltage",
+          "visible_on_add": false,
+          "visible_in_chooser": true,
+          "show_name": false
+        }
+      ],
+      "properties": {
+        "description": "Diodes (JLCPCB database)",
+        "keywords": "Diodes",
+        "exclude_from_bom": 0,
+        "exclude_from_board": 0
+      }
+    },
+    {
+      "name": "MOSFETs",
+      "table": "MOSFETs",
+      "key": "mfr",
+      "symbols": "Symbols",
+      "footprints": "package",
+      "fields": [
+        {
+          "column": "mfr",
+          "name": "MPN",
+          "visible_on_add": false,
+          "visible_in_chooser": false,
+          "show_name": false,
+          "inherit_properties": true
+        },
+        {
+          "column": "Drain Source Voltage (Vdss)",
+          "name": "Value",
+          "visible_on_add": true,
+          "visible_in_chooser": true,
+          "show_name": false
+        },
+        {
+          "column": "Continuous Drain Current (Id)",
+          "name": "Continuous Drain Current (Id)",
+          "visible_on_add": true,
+          "visible_in_chooser": true,
+          "show_name": false
+        },
+        {
+          "column": "lcsc",
+          "name": "JLCID",
+          "visible_on_add": false,
+          "visible_in_chooser": false,
+          "show_name": false
+        },
+        {
+          "column": "Power Dissipation (Pd)",
+          "name": "Power Dissipation (Pd)",
+          "visible_on_add": false,
+          "visible_in_chooser": true,
+          "show_name": false
+        },
+        {
+          "column": "Gate Threshold Voltage (Vgs(th)@Id)",
+          "name": "Gate Threshold Voltage (Vgs(th)@Id)",
+          "visible_on_add": false,
+          "visible_in_chooser": true,
+          "show_name": false
+        },
+        {
+          "column": "Drain Source On Resistance (RDS(on)@Vgs,Id)",
+          "name": "Drain Source On Resistance (RDS(on)@Vgs,Id)",
+          "visible_on_add": false,
+          "visible_in_chooser": true,
+          "show_name": false
+        }
+      ],
+      "properties": {
+        "description": "MOSFETs (JLCPCB database)",
+        "keywords": "MOSFETs",
+        "exclude_from_bom": 0,
+        "exclude_from_board": 0
+      }
+    }
+  ]
+}

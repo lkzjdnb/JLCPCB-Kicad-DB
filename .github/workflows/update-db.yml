@@ -44,11 +44,16 @@ jobs:
         run: |
           uv run python generate_basic_library.py
 
+      - name: Prepare deployment directory
+        run: |
+          mkdir deploy
+          cp jlcpcb-basic-kicad.sqlite3 deploy/
+
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           name: github-pages
-          path: .
+          path: deploy
 
       - name: Deploy to GitHub Pages
         id: deployment

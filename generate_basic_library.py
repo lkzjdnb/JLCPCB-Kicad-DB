@@ -237,11 +237,21 @@ def _(extract_category):
 
 
 @app.cell
+def _(extract_category):
+    LEDs = extract_category(subcategory="Light Emitting Diodes (LED)", footprint_prefix="LED_SMD:LED_", device="Device:LED")
+
+    LEDs.write_database(table_name="LEDs", connection="sqlite:///jlcpcb-basic-kicad.sqlite3", if_table_exists="replace")
+
+    LEDs
+    return
+
+
+@app.cell
 def _(pl):
     query = f"""
-        SELECT DISTINCT c.subcategory
+        SELECT *
         FROM categories c
-        WHERE c.category == "Crystals/Oscillators/Resonators"
+        WHERE c.category == "Optoelectronics"
     """
 
     pl.read_database_uri(query, "sqlite://jlcpcb-components.sqlite3")

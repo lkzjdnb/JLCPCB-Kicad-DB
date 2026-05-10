@@ -342,6 +342,56 @@
         "exclude_from_bom": 0,
         "exclude_from_board": 0
       }
+    },
+    {
+      "name": "LEDs",
+      "table": "LEDs",
+      "key": "mfr",
+      "symbols": "Symbols",
+      "footprints": "package",
+      "fields": [
+        {
+          "column": "mfr",
+          "name": "Value",
+          "visible_on_add": true,
+          "visible_in_chooser": true,
+          "show_name": false
+        },
+        {
+          "column": "Forward Current",
+          "name": "Forward Current",
+          "visible_on_add": true,
+          "visible_in_chooser": true,
+          "show_name": false
+        },
+        {
+          "column": "lcsc",
+          "name": "JLCID",
+          "visible_on_add": false,
+          "visible_in_chooser": false,
+          "show_name": false
+        },
+        {
+          "column": "Forward Voltage (VF)",
+          "name": "Forward Voltage (VF)",
+          "visible_on_add": false,
+          "visible_in_chooser": true,
+          "show_name": false
+        },
+        {
+          "column": "Emitted Color",
+          "name": "Emitted Color",
+          "visible_on_add": true,
+          "visible_in_chooser": true,
+          "show_name": false
+        }
+      ],
+      "properties": {
+        "description": "LEDs (JLCPCB database)",
+        "keywords": "LEDs",
+        "exclude_from_bom": 0,
+        "exclude_from_board": 0
+      }
     }
   ]
 }

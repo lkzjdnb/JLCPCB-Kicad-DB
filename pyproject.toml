@@ -5,10 +5,13 @@ description = "Kicad Database of JLCPCB basic and preferred components"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "beautifulsoup4>=4.14.3",
+    "chompjs>=1.4.0",
     "connectorx>=0.4.5",
     "marimo>=0.23.1",
     "pandas>=3.0.2",
     "polars>=1.40.0",
     "pyarrow>=23.0.1",
+    "pydantic-ai>=1.87.0",
     "sqlalchemy>=2.0.49",
 ]

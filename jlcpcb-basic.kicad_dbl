@@ -250,15 +250,15 @@
           "inherit_properties": true
         },
         {
-          "column": "Drain Source Voltage (Vdss)",
+          "column": "Drain to Source Voltage",
           "name": "Value",
           "visible_on_add": true,
           "visible_in_chooser": true,
           "show_name": false
         },
         {
-          "column": "Continuous Drain Current (Id)",
-          "name": "Continuous Drain Current (Id)",
+          "column": "Current - Continuous Drain(Id)",
+          "name": "Current - Continuous Drain(Id)",
           "visible_on_add": true,
           "visible_in_chooser": true,
           "show_name": false
@@ -271,22 +271,22 @@
           "show_name": false
         },
         {
-          "column": "Power Dissipation (Pd)",
-          "name": "Power Dissipation (Pd)",
+          "column": "Pd - Power Dissipation",
+          "name": "Pd - Power Dissipation",
           "visible_on_add": false,
           "visible_in_chooser": true,
           "show_name": false
         },
         {
-          "column": "Gate Threshold Voltage (Vgs(th)@Id)",
-          "name": "Gate Threshold Voltage (Vgs(th)@Id)",
+          "column": "Gate Threshold Voltage (Vgs(th))",
+          "name": "Gate Threshold Voltage (Vgs(th))",
           "visible_on_add": false,
           "visible_in_chooser": true,
           "show_name": false
         },
         {
-          "column": "Drain Source On Resistance (RDS(on)@Vgs,Id)",
-          "name": "Drain Source On Resistance (RDS(on)@Vgs,Id)",
+          "column": "RDS(on)",
+          "name": "RDS(on)",
           "visible_on_add": false,
           "visible_in_chooser": true,
           "show_name": false
@@ -295,6 +295,50 @@
       "properties": {
         "description": "MOSFETs (JLCPCB database)",
         "keywords": "MOSFETs",
+        "exclude_from_bom": 0,
+        "exclude_from_board": 0
+      }
+    },
+    {
+      "name": "Crystals",
+      "table": "Crystals",
+      "key": "mfr",
+      "symbols": "Symbols",
+      "footprints": "package",
+      "fields": [
+        {
+          "column": "mfr",
+          "name": "MPN",
+          "visible_on_add": false,
+          "visible_in_chooser": false,
+          "show_name": false,
+          "inherit_properties": true
+        },
+        {
+          "column": "Frequency",
+          "name": "Value",
+          "visible_on_add": true,
+          "visible_in_chooser": true,
+          "show_name": false
+        },
+        {
+          "column": "Load Capacitance",
+          "name": "Load Capacitance",
+          "visible_on_add": true,
+          "visible_in_chooser": true,
+          "show_name": false
+        },
+        {
+          "column": "lcsc",
+          "name": "JLCID",
+          "visible_on_add": false,
+          "visible_in_chooser": false,
+          "show_name": false
+        }
+      ],
+      "properties": {
+        "description": "Crystals (JLCPCB database)",
+        "keywords": "Crystals",
         "exclude_from_bom": 0,
         "exclude_from_board": 0
       }

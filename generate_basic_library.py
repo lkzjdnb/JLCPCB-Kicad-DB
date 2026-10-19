@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.23.1"
+__generated_with = "0.25.1"
 app = marimo.App(width="medium")
 
 
@@ -16,7 +16,7 @@ def _():
 
 
 @app.cell
-def _(json, logger, pl):
+def _(logger, pl):
     FOOTPRINT_MAP = {
         "0402": "0402_1005Metric",
         "0603": "0603_1608Metric",
@@ -46,9 +46,9 @@ def _(json, logger, pl):
     def extract_category(category: None | str = None, subcategory: None | str = None, footprint_prefix: str | None = None, device: str | None = None, basic: bool = True, preferred: bool = True, pre_process = None):
         conds = []
         if category:
-            conds += [f"ct.category = '{category}'",]
+            conds += [f"c.category = '{category}'",]
         if subcategory:
-            conds += [f"ct.subcategory = '{subcategory}'",]
+            conds += [f"c.subcategory = '{subcategory}'",]
 
         basic_pref = []
         if basic:
@@ -59,9 +59,8 @@ def _(json, logger, pl):
 
         query = f"""
             SELECT c.*
-            FROM components c
-            JOIN components_fts f ON c.lcsc = f.lcsc
-            JOIN categories ct ON c.category_id = ct.id
+            FROM jlc_components c
+            JOIN jlc_components_fts f ON c.lcsc = f.lcsc
             WHERE {" AND ".join(conds)}
         """
 
@@ -72,17 +71,10 @@ def _(json, logger, pl):
 
         footprint_map = {k: f"{footprint_prefix}{v}" for k,v in FOOTPRINT_MAP.items()}
 
-        attrs = []
-        if len(df.select(pl.col("extra"))) > 0:
-            attrs = list(json.loads(df.select(pl.col("extra").str.json_path_match(r"$.attributes").drop_nulls())["extra"][0]).keys())
-            attrs_dtype = pl.Struct([
-                pl.Field(k, pl.String) for k in attrs
-            ])
-
-            df = df.with_columns(pl.col("extra").str.json_path_match(r"$.attributes").str.json_decode(attrs_dtype)).unnest("extra")
-        #return df
+        attrs = ["attributes"]
+    
         df = df.select(["lcsc", "mfr", "package", "stock", "price", "basic"] + attrs)
-        df = df.with_columns(pl.col("price").str.json_path_match(r"$[0].price"))
+        df = df.with_columns(pl.col("price").str.extract(r"1-\d+:(\d\.\d+),"))
 
         packages = set(df.select(pl.col("package").unique())["package"])
         packages_not_found = packages.difference(FOOTPRINT_MAP.keys())
@@ -120,7 +112,7 @@ def _(extract_category):
 
 @app.cell
 def _(extract_category):
-    inductors = extract_category(category="Inductors/Coils/Transformers", footprint_prefix="Inductor_SMD:L_", device="Device:L")
+    inductors = extract_category(category="Inductors, Coils, Chokes", footprint_prefix="Inductor_SMD:L_", device="Device:L")
 
     inductors.write_database(table_name="Inductors", connection="sqlite:///jlcpcb-basic-kicad.sqlite3", if_table_exists="replace")
 
@@ -150,7 +142,7 @@ def _(extract_category, get_lcsc_part_extra, pl):
         )
         return df
 
-    fets = extract_category(subcategory="MOSFETs", footprint_prefix="Package_TO_SOT_SMD:", device="Device:Q", pre_process=download_missing_data)
+    fets = extract_category(subcategory="MOSFETs", footprint_prefix="Package_TO_SOT_SMD:", device="Device:Q", pre_process=None)
 
     regex_map = {
         r"(?i)P.Channel": "Transistor_FET:Q_PMOS_GSD",
@@ -158,7 +150,7 @@ def _(extract_category, get_lcsc_part_extra, pl):
     }
 
     expr = reduce(
-        lambda acc, kv: acc.when(pl.col("Type").str.contains(kv[0])).then(pl.lit(kv[1])),
+        lambda acc, kv: acc.when(pl.col("attributes").str.json_path_match("$.Type").str.contains(kv[0])).then(pl.lit(kv[1])),
         regex_map.items(),
         pl.when(pl.lit(False)).then(None)
     ).otherwise(None)
@@ -238,23 +230,11 @@ def _(extract_category):
 
 @app.cell
 def _(extract_category):
-    LEDs = extract_category(subcategory="Light Emitting Diodes (LED)", footprint_prefix="LED_SMD:LED_", device="Device:LED")
+    LEDs = extract_category(subcategory="LED Indication - Discrete", footprint_prefix="LED_SMD:LED_", device="Device:LED")
 
     LEDs.write_database(table_name="LEDs", connection="sqlite:///jlcpcb-basic-kicad.sqlite3", if_table_exists="replace")
 
     LEDs
-    return
-
-
-@app.cell
-def _(pl):
-    query = f"""
-        SELECT *
-        FROM categories c
-        WHERE c.category == "Optoelectronics"
-    """
-
-    pl.read_database_uri(query, "sqlite://jlcpcb-components.sqlite3")
     return
 
 

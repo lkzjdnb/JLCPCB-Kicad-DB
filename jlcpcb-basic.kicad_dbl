@@ -1,6 +1,6 @@
 {
   "meta": {
-    "version": 0
+    "version": 1
   },
   "name": "JLCPCB - Basic",
   "description": "Database of the JLCPCB basic components",
@@ -59,13 +59,7 @@
           "visible_in_chooser": false,
           "show_name": false
         }
-      ],
-      "properties": {
-        "description": "Capacitors (JLCPCB database)",
-        "keywords": "Capacitors",
-        "exclude_from_bom": 0,
-        "exclude_from_board": 0
-      }
+      ]
     },
     {
       "name": "Resistors",
@@ -124,13 +118,7 @@
           "visible_in_chooser": false,
           "show_name": false
         }
-      ],
-      "properties": {
-        "description": "Resistors (JLCPCB database)",
-        "keywords": "Resistors",
-        "exclude_from_bom": 0,
-        "exclude_from_board": 0
-      }
+      ]
     },
     {
       "name": "Inductors",
@@ -175,13 +163,7 @@
           "visible_in_chooser": true,
           "show_name": false
         }
-      ],
-      "properties": {
-        "description": "Inductors (JLCPCB database)",
-        "keywords": "Inductors",
-        "exclude_from_bom": 0,
-        "exclude_from_board": 0
-      }
+      ]
     },
     {
       "name": "Diode",
@@ -226,13 +208,7 @@
           "visible_in_chooser": true,
           "show_name": false
         }
-      ],
-      "properties": {
-        "description": "Diodes (JLCPCB database)",
-        "keywords": "Diodes",
-        "exclude_from_bom": 0,
-        "exclude_from_board": 0
-      }
+      ]
     },
     {
       "name": "MOSFETs",
@@ -291,13 +267,7 @@
           "visible_in_chooser": true,
           "show_name": false
         }
-      ],
-      "properties": {
-        "description": "MOSFETs (JLCPCB database)",
-        "keywords": "MOSFETs",
-        "exclude_from_bom": 0,
-        "exclude_from_board": 0
-      }
+      ]
     },
     {
       "name": "Crystals",
@@ -335,13 +305,7 @@
           "visible_in_chooser": false,
           "show_name": false
         }
-      ],
-      "properties": {
-        "description": "Crystals (JLCPCB database)",
-        "keywords": "Crystals",
-        "exclude_from_bom": 0,
-        "exclude_from_board": 0
-      }
+      ]
     },
     {
       "name": "LEDs",
@@ -385,13 +349,7 @@
           "visible_in_chooser": true,
           "show_name": false
         }
-      ],
-      "properties": {
-        "description": "LEDs (JLCPCB database)",
-        "keywords": "LEDs",
-        "exclude_from_bom": 0,
-        "exclude_from_board": 0
-      }
+      ]
     }
   ]
 }

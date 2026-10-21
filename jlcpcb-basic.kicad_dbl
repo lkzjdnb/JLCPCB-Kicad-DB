@@ -32,7 +32,7 @@
           "show_name": false
         },
         {
-          "column": "Voltage Rated",
+          "column": "Voltage Rating",
           "name": "Voltage Rating",
           "visible_on_add": true,
           "visible_in_chooser": true,
@@ -90,7 +90,7 @@
           "show_name": false
         },
         {
-          "column": "Overload Voltage (Max)",
+          "column": "Voltage-Supply(Max)",
           "name": "Voltage Rating",
           "visible_on_add": true,
           "visible_in_chooser": true,
@@ -155,7 +155,7 @@
           "show_name": false
         },
         {
-          "column": "Rated Current",
+          "column": "Current Rating",
           "name": "Rated Current",
           "visible_on_add": true,
           "visible_in_chooser": true,
@@ -169,7 +169,7 @@
           "show_name": false
         },
         {
-          "column": "DC Resistance (DCR)",
+          "column": "DC Resistance(DCR)",
           "name": "Resistance",
           "visible_on_add": false,
           "visible_in_chooser": true,
@@ -199,14 +199,14 @@
           "inherit_properties": true
         },
         {
-          "column": "Reverse Voltage (Vr)",
+          "column": "Value",
           "name": "Value",
           "visible_on_add": true,
           "visible_in_chooser": true,
           "show_name": false
         },
         {
-          "column": "Rectified Current",
+          "column": "Current - Rectified",
           "name": "Rectified Current",
           "visible_on_add": true,
           "visible_in_chooser": true,
@@ -220,7 +220,7 @@
           "show_name": false
         },
         {
-          "column": "Forward Voltage (Vf@If)",
+          "column": "Voltage - Forward(Vf@If)",
           "name": "Forward Voltage",
           "visible_on_add": false,
           "visible_in_chooser": true,
@@ -358,7 +358,7 @@
           "show_name": false
         },
         {
-          "column": "Forward Current",
+          "column": "Test Current",
           "name": "Forward Current",
           "visible_on_add": true,
           "visible_in_chooser": true,
@@ -372,14 +372,14 @@
           "show_name": false
         },
         {
-          "column": "Forward Voltage (VF)",
+          "column": "Voltage - Forward(Vf)",
           "name": "Forward Voltage (VF)",
           "visible_on_add": false,
           "visible_in_chooser": true,
           "show_name": false
         },
         {
-          "column": "Emitted Color",
+          "column": "Illumination Color",
           "name": "Emitted Color",
           "visible_on_add": true,
           "visible_in_chooser": true,

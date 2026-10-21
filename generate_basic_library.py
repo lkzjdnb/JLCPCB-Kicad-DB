@@ -71,8 +71,21 @@ def _(logger, pl):
 
         footprint_map = {k: f"{footprint_prefix}{v}" for k,v in FOOTPRINT_MAP.items()}
 
-        attrs = ["attributes"]
-    
+        # Flatten the 'attributes' JSON into one column per attribute, so the
+        # columns referenced by jlcpcb-basic.kicad_dbl (Value, Voltage Rating, ...) exist.
+        attr_values = df.select(pl.col("attributes").drop_nulls())["attributes"]
+        keys = set()
+        for raw in attr_values:
+            if raw and raw != "{}":
+                keys.update(json.loads(raw).keys())
+        attrs = sorted(keys)
+
+        if attrs:
+            attrs_dtype = pl.Struct([pl.Field(k, pl.String) for k in attrs])
+            df = df.with_columns(
+                pl.col("attributes").str.json_decode(attrs_dtype)
+            ).unnest("attributes")
+
         df = df.select(["lcsc", "mfr", "package", "stock", "price", "basic"] + attrs)
         df = df.with_columns(pl.col("price").str.extract(r"1-\d+:(\d\.\d+),"))
 
@@ -121,8 +134,14 @@ def _(extract_category):
 
 
 @app.cell
-def _(extract_category):
+def _(extract_category, pl):
     diodes = extract_category(category="Diodes", footprint_prefix="Diode_SMD:D_", device="Device:D")
+
+    # Zener diodes have no reverse voltage but carry 'Zener Voltage(Nom)';
+    # coalesce both so every diode gets a Value.
+    diodes = diodes.with_columns(
+        pl.coalesce(pl.col("Voltage - DC Reverse(Vr)"), pl.col("Zener Voltage(Nom)")).alias("Value")
+    )
 
     diodes.write_database(table_name="Diodes", connection="sqlite:///jlcpcb-basic-kicad.sqlite3", if_table_exists="replace")
 
@@ -144,13 +163,17 @@ def _(extract_category, get_lcsc_part_extra, pl):
 
     fets = extract_category(subcategory="MOSFETs", footprint_prefix="Package_TO_SOT_SMD:", device="Device:Q", pre_process=None)
 
+    # Some parts lack the 'Type' attribute but carry the polarity in 'Number'
+    # (e.g. "1 P-Channel"); fall back to it so a symbol is always assigned.
+    fets = fets.with_columns(pl.coalesce(pl.col("Type"), pl.col("Number")).alias("Type"))
+
     regex_map = {
         r"(?i)P.Channel": "Transistor_FET:Q_PMOS_GSD",
         r"(?i)N.Channel": "Transistor_FET:Q_NMOS_GSD",
     }
 
     expr = reduce(
-        lambda acc, kv: acc.when(pl.col("attributes").str.json_path_match("$.Type").str.contains(kv[0])).then(pl.lit(kv[1])),
+        lambda acc, kv: acc.when(pl.col("Type").str.contains(kv[0])).then(pl.lit(kv[1])),
         regex_map.items(),
         pl.when(pl.lit(False)).then(None)
     ).otherwise(None)
